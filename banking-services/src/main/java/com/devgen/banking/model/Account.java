@@ -36,5 +36,11 @@ public abstract class Account {
     public AccountType getAccountType() {
         return accountType;
     }
+
+    public void updateBalance(double newBalance) {
+
+        this.balance = newBalance;  //set new Balance to current balance
+
+    }
 }
 

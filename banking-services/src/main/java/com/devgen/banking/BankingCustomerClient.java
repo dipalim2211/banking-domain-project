@@ -4,6 +4,7 @@ import com.devgen.banking.model.Account;
 import com.devgen.banking.model.AccountType;
 import com.devgen.banking.model.CurrentAccount;
 import com.devgen.banking.service.AccountService;
+import com.devgen.banking.service.TransactionService;
 
 public class BankingCustomerClient {
 
@@ -13,36 +14,33 @@ public class BankingCustomerClient {
 
         AccountService accountService = new AccountService();
 
-        //it will return Account Number
-        long accountNumber =accountService.createAccount(3000, AccountType.SAVING);
+        //Store Data
+        long accountNumber = accountService.createAccount(3000, AccountType.SAVING);
+        Account account = accountService.getAccount(accountNumber);
 
-        //get Details of account using returned Account Number
-        //return details from Map
-        Account account=accountService.getAccount(accountNumber);
-
-        //Print account Details
+        //Print Data
         System.out.println("Account Number : " + account.getAccountNumber() + " " + "" +
                 "Balance : " + account.getBalance()+" Account type : "+account.getAccountType());
 
+        //Deposit
+        TransactionService transactionService = new TransactionService(accountService);
+        transactionService.deposit(accountNumber,500);
 
-        long accountNumber1 =accountService.createAccount(5000.0, AccountType.SAVING);
-        Account account1=accountService.getAccount(accountNumber1);
-        System.out.println("Account Number : " + account1.getAccountNumber() + " " + "" +
-                "Balance : " + account1.getBalance() +" Account type : "+account1.getAccountType());
+        //Print Updated Balance
+        account = accountService.getAccount(accountNumber);
 
-        //To get Overdraft Facility : Need TypeCasting
+        System.out.println("Account Number : " + account.getAccountNumber() + " " + "" +
+                "Balance : " + account.getBalance()+" Account type : "+account.getAccountType());
 
-        long accountNumber2 =accountService.createAccount(2000.0, AccountType.CURRENT);
-        Account account2=accountService.getAccount(accountNumber2);
-        CurrentAccount currentAccount = (CurrentAccount)account2; //DownCast
+        //Withdrawal
+        transactionService = new TransactionService(accountService);
+        transactionService.withdraw(accountNumber,200);
 
-        System.out.println("Account Number : " + account2.getAccountNumber() + "" +
+        //Print Updated Balance
+        account = accountService.getAccount(accountNumber);
 
-                "Balance : " + account2.getBalance()
-                +" Account type : "+account2.getAccountType()
-        +"  OverDraft Limit : "+currentAccount.getOverDraftLimit());
-
-
+        System.out.println("Account Number : " + account.getAccountNumber() + " " + "" +
+                "Balance : " + account.getBalance()+" Account type : "+account.getAccountType());
 
 
 
