@@ -24,6 +24,7 @@ public abstract class Account {
         this.accountType = accountType;
     }
 
+    //Encapsulation
     public long getAccountNumber() {
         return accountNumber;
     }
