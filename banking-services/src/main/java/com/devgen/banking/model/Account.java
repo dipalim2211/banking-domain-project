@@ -1,6 +1,6 @@
 package com.devgen.banking.model;
 
-public class Account {
+public abstract class Account {
 
     /*
        Account Number : Unique , Auto generated
