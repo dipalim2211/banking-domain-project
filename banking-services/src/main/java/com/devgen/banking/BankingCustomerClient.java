@@ -1,44 +1,48 @@
 package com.devgen.banking;
 
 import com.devgen.banking.model.Account;
-import com.devgen.banking.model.CurrentAccount; 
-import com.devgen.banking.model.SavingAccount;
+import com.devgen.banking.model.AccountType;
+import com.devgen.banking.model.CurrentAccount;
+import com.devgen.banking.service.AccountService;
 
 public class BankingCustomerClient {
 
+    //Console Based Client(No frontend involved)
 
     public static void main(String[] args) {
 
-    /* Account Abstract Class
-    Account account = new Account(12345,1000, AccountType.CURRENT);
+        AccountService accountService = new AccountService();
 
-    SavingAccount s1 = new SavingAccount(13456,2000);
-        //No need to give type
+        //it will return Account Number
+        long accountNumber =accountService.createAccount(3000, AccountType.SAVING);
 
-    CurrentAccount c1 = new CurrentAccount(2345,3000);
-     */
+        //get Details of account using returned Account Number
+        //return details from Map
+        Account account=accountService.getAccount(accountNumber);
+
+        //Print account Details
+        System.out.println("Account Number : " + account.getAccountNumber() + " " + "" +
+                "Balance : " + account.getBalance()+" Account type : "+account.getAccountType());
 
 
-        //Test UseCase 01:
-        Account s1 = new SavingAccount(13456, 2000);  //Loose Coupling
+        long accountNumber1 =accountService.createAccount(5000.0, AccountType.SAVING);
+        Account account1=accountService.getAccount(accountNumber1);
+        System.out.println("Account Number : " + account1.getAccountNumber() + " " + "" +
+                "Balance : " + account1.getBalance() +" Account type : "+account1.getAccountType());
 
-        System.out.println("Account Number : " + s1.getAccountNumber() + " " + "" +
-                "Balance : " + s1.getBalance() );
+        //To get Overdraft Facility : Need TypeCasting
 
-        Account c1 = new CurrentAccount(23453, 3000); //Loose Coupling
+        long accountNumber2 =accountService.createAccount(2000.0, AccountType.CURRENT);
+        Account account2=accountService.getAccount(accountNumber2);
+        CurrentAccount currentAccount = (CurrentAccount)account2; //DownCast
 
-        System.out.println("Account Number : " + c1.getAccountNumber() + " " + "" +
-                "Balance : " + c1.getBalance());
+        System.out.println("Account Number : " + account2.getAccountNumber() + "" +
 
-        /*
-         want to display overdraft limit but its base class methode and unable to
-         call from Superclass reference , need Down Typecasting
-         */
+                "Balance : " + account2.getBalance()
+                +" Account type : "+account2.getAccountType()
+        +"  OverDraft Limit : "+currentAccount.getOverDraftLimit());
 
-        CurrentAccount c2 =(CurrentAccount)c1;  //Down casting
 
-        System.out.println("Account Number : " + c1.getAccountNumber() + " " + "" +
-                "Balance : " + c1.getBalance() + " "+"OverDraft Limit :  "+c2.getOverDraftLimit());
 
 
 
