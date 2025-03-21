@@ -5,7 +5,8 @@ import com.devgen.banking.model.AccountType;
 import com.devgen.banking.model.CurrentAccount;
 
 
-public class TransactionService {
+public class TransactionService
+{
 
     //Use : Withdraw , Deposit
 
@@ -36,15 +37,18 @@ public class TransactionService {
 
         double newBalance = 0;
 
-        if(account.getAccountType()== AccountType.SAVING){
+        if(account.getAccountType()== AccountType.SAVING)
+        {
             newBalance = account.getBalance()-amount;
 
-        } else if (account.getAccountType()==AccountType.CURRENT) {
+        } else if (account.getAccountType()==AccountType.CURRENT)
+        {
             CurrentAccount currentAccount=(CurrentAccount)account;
             newBalance = account.getBalance()+((CurrentAccount) account).getOverDraftLimit() - amount;
         }
 
-        if(newBalance<0){
+        if(newBalance<0)
+        {
             System.out.println("Insufficient Balance");
             return false;
         }
@@ -52,8 +56,5 @@ public class TransactionService {
         account.updateBalance(newBalance);
         return true;
     }
-
-
-
 
 }

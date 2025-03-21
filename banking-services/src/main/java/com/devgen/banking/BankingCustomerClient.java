@@ -5,12 +5,12 @@ import com.devgen.banking.model.AccountType;
 import com.devgen.banking.service.AccountService;
 import com.devgen.banking.service.TransactionService;
 
-public class BankingCustomerClient {
-
+public class BankingCustomerClient
+{
     //Console Based Client(No frontend involved)
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args)
+    {
         AccountService accountService = new AccountService();
 
         //Store Data
@@ -40,9 +40,5 @@ public class BankingCustomerClient {
 
         System.out.println("Account Number : " + account.getAccountNumber() + " " + "" +
                 "Balance : " + account.getBalance()+" Account type : "+account.getAccountType());
-
-
-
-
     }
 }

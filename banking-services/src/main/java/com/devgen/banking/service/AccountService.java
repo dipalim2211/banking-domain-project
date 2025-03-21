@@ -7,7 +7,8 @@ import com.devgen.banking.model.SavingAccount;
 
 import java.util.HashMap;
 
-public class AccountService {
+public class AccountService
+{
 
     private HashMap<Long, Account> accountMap1 ; //Super class reference
 
@@ -28,15 +29,18 @@ public class AccountService {
     input : Balance , Current or Saving
      */
 
-    public long createAccount(double balance, AccountType accountType){
+    public long createAccount(double balance, AccountType accountType)
+    {
 
         Account account = null;
-        if(accountType == AccountType.SAVING){
+        if(accountType == AccountType.SAVING)
+        {
 
             account = new SavingAccount(autoAccountNumber,balance);
             //RunTime Polymorphism: Changing Object Value based on type of Account
 
-        } else if (accountType == AccountType.CURRENT) {
+        } else if (accountType == AccountType.CURRENT)
+        {
 
            account = new CurrentAccount(autoAccountNumber,balance);
 
@@ -51,12 +55,11 @@ public class AccountService {
 
     //Get Account Detail on Account Number
 
-    public Account getAccount(Long autoAccountNumber){
+    public Account getAccount(Long autoAccountNumber)
+    {
 
         return accountMap1.get(autoAccountNumber);
 
     }
-
-
 
 }
