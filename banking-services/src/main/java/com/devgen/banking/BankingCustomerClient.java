@@ -2,7 +2,6 @@ package com.devgen.banking;
 
 import com.devgen.banking.model.Account;
 import com.devgen.banking.model.AccountType;
-import com.devgen.banking.model.CurrentAccount;
 import com.devgen.banking.service.AccountService;
 import com.devgen.banking.service.TransactionService;
 
