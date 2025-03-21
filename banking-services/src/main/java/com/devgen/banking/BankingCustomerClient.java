@@ -15,7 +15,7 @@ public class BankingCustomerClient {
         AccountService accountService = new AccountService();
 
         //Store Data
-        long accountNumber = accountService.createAccount(3000, AccountType.SAVING);
+        long accountNumber = accountService.createAccount(3000, AccountType.CURRENT);
         Account account = accountService.getAccount(accountNumber);
 
         //Print Data
@@ -34,7 +34,7 @@ public class BankingCustomerClient {
 
         //Withdrawal
         transactionService = new TransactionService(accountService);
-        transactionService.withdraw(accountNumber,200);
+        transactionService.withdraw(accountNumber,4001);
 
         //Print Updated Balance
         account = accountService.getAccount(accountNumber);
